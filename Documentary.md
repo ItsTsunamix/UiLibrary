@@ -4,7 +4,7 @@ Hello, welcome to my respiratory, this is where all my ui libraries will be;
 
 # MoonLibrary - Documentary
 
-```Create(<string> Name```
+```Create(<string> Name)```
 
 Creates the library, the "Name" parameter is the name of the library
 
