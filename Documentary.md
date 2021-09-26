@@ -28,7 +28,7 @@ Creates a label, "Text" parameter is the text, pretty self explainatory
 
 "Name" is the one and only parameter, it is the text of the dropdown
 
-```Dropdown:AddButton(<string> Name, <void> Callback```
+```Dropdown:AddButton(<string> Name, <void> Callback)```
 
 Dropdowns use a different method of adding options to it, it's exactly the same as adding a library, e.g:
 
@@ -38,4 +38,6 @@ literally exactly like the library
 
 # MoonLibrary - Other
 
-Unfortunately, the dropdowns are probably one of the more buggy tools along with the toggles, if it's at the very bottom, it cuts off, placing at very top is best recommended
+Unfortunately, the dropdowns are probably one of the more buggy tools along with the toggles, if it's at the very bottom, it cuts off the opotions, placing at very top is best recommended, might find something to tackle this later, but for now place it at them very top;
+
+I might add stuff to it later
