@@ -32,7 +32,12 @@ Creates a label, "Text" parameter is the text, pretty self explainatory
 
 Dropdowns use a different method of adding options to it, it's exactly the same as adding a library, e.g:
 
-```local Dropdown = library:CreateDropdown("Dropdown"); Dropdown:AddButton("Option", function() print("Clicked"); end);```
+```
+local Dropdown = library:CreateDropdown("Dropdown");
+Dropdown:AddButton("Option", function()
+  print("Clicked"); 
+end);
+```
 
 literally exactly like the library
 
