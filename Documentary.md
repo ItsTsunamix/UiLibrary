@@ -30,7 +30,7 @@ Creates a label, "Text" parameter is the text, pretty self explainatory
 
 ```Dropdown:AddButton(<string> Name, <void> Callback)```
 
-Dropdowns use a different method of adding options to it, it's exactly the same as adding a library, e.g:
+Unlike any dropdowns, I use a different method, exact same steps as creating a library, here is an example: 
 
 ```
 local Dropdown = library:CreateDropdown("Dropdown");
