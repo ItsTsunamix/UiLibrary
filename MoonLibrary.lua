@@ -3,13 +3,13 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ItsTs
 -- //////////////////////////////////////////////////////////////////////
 local libraryname = library:Create("Moon Library"); --name of lib
 
-local main = library:CreateTab("Features") --tab
+local main = libraryname:CreateTab("Features") --tab
 
 main:CreateLabel("Library made by Tsunamix/Proxide") --creates a label
 
 local dropdown = main:CreateDropdown("Dropdown") --creates dropdown (kinda buggy)
 
-dropdown:AddButton("Dropdown Option", function() --unlike any other libraries, moonlibrary uses another method
+dropdown:AddButton("Dropdown Option", function() --unlike any other libraries, moonlibrary uses another method to add dropdown options
 	print("You clicked on the dropdown option.")
 end)
 
