@@ -41,6 +41,9 @@ end);
 
 # MoonLibrary - Other
 
-Unfortunately, the dropdowns are probably one of the more buggy tools along with the toggles, if it's at the very bottom, it cuts off the options, placing at very top is best recommended, might find something to tackle this later, but for now place it at them very top;
+Dropdowns have been updated and better than before; changes are:
+
++ 1 Parameter (CloseWhenClicked) a bool, true will close the dropdown when an option has been clicked
++ 1 Parameter (ZIndex) a integer; this is to solve the problem of dropdowns crossing over eachother.
 
 I might add stuff to it later
