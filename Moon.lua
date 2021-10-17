@@ -2,8 +2,6 @@
 Written by Tsunamix/Proxide
 
 Documentary can be found at: https://github.com/ItsTsunamix/UiLibrary/blob/main/Documentary.md
-
-Notice: Dropdowns are currently the most buggy feature; I am aware of this and I will *try to* fix it
 ]]
 
 local function dragify(Frame)
@@ -458,7 +456,9 @@ function library:Create(Name)
 			UICorner_12.Parent = Text
 		end
 		
-		function _Tabs:CreateDropdown(Name)
+		function _Tabs:CreateDropdown(Name, ClosesWhenClicked, ZIndex)
+			ClosesWhenClicked = ClosesWhenClicked or false;
+			ZIndex = ZIndex or 5;
 			
 			local _Dropdown = {}
 			
@@ -512,7 +512,7 @@ function library:Create(Name)
 			DropdownContent.ClipsDescendants = true
 			DropdownContent.Position = UDim2.new(0, 0, 0, 34)
 			DropdownContent.Size = UDim2.new(1, 0, 0, 0)
-			DropdownContent.ZIndex = 5
+			DropdownContent.ZIndex = ZIndex
 			
 			Dropdown.MouseButton1Click:Connect(function()
 				local tween = game:GetService("TweenService")
@@ -531,6 +531,7 @@ function library:Create(Name)
 			end)
 			
 			function _Dropdown:AddButton(Name, Callback)
+
 				local DropdownTop = Instance.new("Frame")
 				local DropdownBottom = Instance.new("Frame")
 				local UICorner_11 = Instance.new("UICorner")
@@ -544,7 +545,7 @@ function library:Create(Name)
 				DropdownTop.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 				DropdownTop.BorderSizePixel = 0
 				DropdownTop.Size = UDim2.new(0, 350, 0, 4)
-				DropdownTop.ZIndex = 5
+				DropdownTop.ZIndex = ZIndex
 
 				DropdownBottom.Name = "DropdownBottom"
 				DropdownBottom.Parent = DropdownTop
@@ -552,7 +553,7 @@ function library:Create(Name)
 				DropdownBottom.BorderSizePixel = 0
 				DropdownBottom.Position = UDim2.new(0, 0, 3.25, 0)
 				DropdownBottom.Size = UDim2.new(0, 350, 0, 12)
-				DropdownBottom.ZIndex = 5
+				DropdownBottom.ZIndex = ZIndex
 
 				UICorner_11.CornerRadius = UDim.new(0, 7)
 				UICorner_11.Parent = DropdownBottom
@@ -564,7 +565,7 @@ function library:Create(Name)
 				DropdownButton.ClipsDescendants = true
 				DropdownButton.Position = UDim2.new(0, 0, 1, 0)
 				DropdownButton.Size = UDim2.new(0, 350, 0, 16)
-				DropdownButton.ZIndex = 5
+				DropdownButton.ZIndex = ZIndex
 				DropdownButton.Font = Enum.Font.SourceSans
 				DropdownButton.Text = ""
 				DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -580,7 +581,7 @@ function library:Create(Name)
 				TextLabel_4.BackgroundTransparency = 1.000
 				TextLabel_4.Position = UDim2.new(0.0199999996, 0, 0, 0)
 				TextLabel_4.Size = UDim2.new(0, 343, 0, 16)
-				TextLabel_4.ZIndex = 5
+				TextLabel_4.ZIndex = ZIndex
 				TextLabel_4.Font = Enum.Font.SourceSans
 				TextLabel_4.Text = Name
 				TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -593,11 +594,21 @@ function library:Create(Name)
 				Sample_3.BackgroundTransparency = 1.000
 				Sample_3.Image = "http://www.roblox.com/asset/?id=4560909609"
 				Sample_3.ImageTransparency = 0.600
-				Sample_3.ZIndex = 5
+				Sample_3.ZIndex = ZIndex
 				
 				DropdownButton.MouseButton1Click:Connect(function()
 					Callback()
 					
+					local tween = game:GetService("TweenService")
+					if ClosesWhenClicked then    
+						local tweenp = tween:Create(DropdownContent,TweenInfo.new(.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size = UDim2.new(1,0,0,0)})
+						local tweenp2 = tween:Create(arrow_drop_down,TweenInfo.new(.45,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Rotation = 0})
+						tweenp2:Play()
+						tweenp:Play()
+					else
+						--;
+					end
+
 					local c = Sample_3:Clone()
 					c.Parent = DropdownButton
 					local x, y = (game.Players.LocalPlayer:GetMouse().X - c.AbsolutePosition.X), (game.Players.LocalPlayer:GetMouse().Y - c.AbsolutePosition.Y)
