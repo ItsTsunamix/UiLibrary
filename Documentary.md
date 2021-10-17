@@ -24,16 +24,16 @@ Creates a button, "Name" parameter is the text of the button, "Callback" is what
 
 Creates a label, "Text" parameter is the text, pretty self explainatory
 
-```CreateDropdown(<string> Name)```
+```CreateDropdown(<string> Name, <bool> CloseWhenClicked, <int>ZIndex)```
 
-"Name" is the one and only parameter, it is the text of the dropdown
+"Name" is the text of the dropdown, "CloseWhenClicked" simply closes the dropdown when an option has been clicked, and ZIndex is the ZIndex of the dropdown
 
 ```Dropdown:AddButton(<string> Name, <void> Callback)```
 
 Unlike any dropdowns, I use a different method, exact same steps as creating a library, here is an example: 
 
 ```
-local Dropdown = library:CreateDropdown("Dropdown");
+local Dropdown = library:CreateDropdown("Dropdown", true, 1);
 Dropdown:AddButton("Option", function()
   print("Clicked"); 
 end);
