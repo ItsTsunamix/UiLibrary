@@ -10,6 +10,7 @@ Changelog:
 
 ]]
 
+
 local function dragify(Frame)
 	local dragToggle = nil
 	local dragSpeed = .25
@@ -99,8 +100,8 @@ function library:Create(Name)
 	Main.Name = "Main"
 	Main.Parent = FirstBorder
 	Main.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
-	Main.Position = UDim2.new(0.00999999978, 0, 0.0149999997, 0)
-	Main.Size = UDim2.new(0, 515, 0, 295)
+	Main.Position = UDim2.new(0.015, 0, 0.014, 0)
+	Main.Size = UDim2.new(0, 510, 0, 297)
 
 	UICorner_2.CornerRadius = UDim.new(0, 63)
 	UICorner_2.Parent = Main
