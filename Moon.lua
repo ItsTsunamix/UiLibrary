@@ -6,7 +6,8 @@ Documentary can be found at: https://github.com/ItsTsunamix/UiLibrary/blob/main/
 Changelog:
 
 1.) Toggles are blue again when enabled
-2.) Dropdowns are now better and have 2 new parameters when creating them (both can be found in the documentary)
+2.) Dropdowns are now better and have 2 new parameters when creating them (both can be found in the documentary) and fixed a bug with the arrow
+3.) Dropdowns are STILL buggy, remember to not put them all the way at the bottom as they will be cut off
 
 ]]
 
