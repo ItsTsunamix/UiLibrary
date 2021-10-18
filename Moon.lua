@@ -433,7 +433,7 @@ function library:Create(Name)
 			if State == false then
 				Checked.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
 			else
-				Checked.BackgroundColor3 = Color3.fromRGB(0, 255, 111)
+				Checked.BackgroundColor3 = Color3.fromRGB(0, 200, 255)
 			end
 			Checked.Position = UDim2.new(0.916999996, 0, 0.207000002, 0)
 			Checked.Size = UDim2.new(0, 18, 0, 18)
