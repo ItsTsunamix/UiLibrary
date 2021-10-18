@@ -47,6 +47,8 @@ end
 local library = {};
 
 function library:Create(Name)
+	Name = Name or "Moon"
+
 	local Library = Instance.new("ScreenGui")
 	local Descendant = Instance.new("Frame")
 	local FirstBorder = Instance.new("Frame")
@@ -67,7 +69,7 @@ function library:Create(Name)
 	local UIListLayout = Instance.new("UIListLayout")
 
 	Library.Name = "Library"
-	Library.Parent = game.Players.LocalPlayer.PlayerGui
+	Library.Parent = game.CoreGui
 
 	Descendant.Name = "Descendant"
 	Descendant.Parent = Library
@@ -367,7 +369,7 @@ function library:Create(Name)
 				State = not State
 				Callback(State)
 				if State == true then
-					tween:Create(Checked,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.In),{BackgroundColor3 = Color3.fromRGB(0, 255, 111)}):Play()
+					tween:Create(Checked,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.In),{BackgroundColor3 = Color3.fromRGB(0, 200, 255)}):Play()
 					local c = Sample_2:Clone()
 					c.Parent = Toggle
 					local x, y = (game.Players.LocalPlayer:GetMouse().X - c.AbsolutePosition.X), (game.Players.LocalPlayer:GetMouse().Y - c.AbsolutePosition.Y)
