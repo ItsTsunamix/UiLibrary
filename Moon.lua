@@ -2,6 +2,11 @@
 Written by Tsunamix/Proxide
 
 Documentary can be found at: https://github.com/ItsTsunamix/UiLibrary/blob/main/Documentary.md
+
+Changelog:
+
+1.) Toggles are blue again when enabled
+2.) Dropdowns are now better and have 2 new parameters when creating them (both can be found in the documentary)
 ]]
 
 local function dragify(Frame)
