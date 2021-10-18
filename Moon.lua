@@ -76,7 +76,7 @@ function library:Create(Name)
 	local UIListLayout = Instance.new("UIListLayout")
 
 	Library.Name = "Library"
-	Library.Parent = game.CoreGui
+	Library.Parent = game.Players.LocalPlayer.PlayerGui
 
 	Descendant.Name = "Descendant"
 	Descendant.Parent = Library
@@ -474,7 +474,7 @@ function library:Create(Name)
 			local Dropdown = Instance.new("TextButton")
 			local UICorner_10 = Instance.new("UICorner")
 			local TextLabel_3 = Instance.new("TextLabel")
-			local arrow_drop_down = Instance.new("ImageButton")
+			local arrow_drop_down = Instance.new("ImageLabel")
 			local DropdownContent = Instance.new("Frame")
 			
 
