@@ -466,19 +466,21 @@ function library:Create(Name)
 			UICorner_12.Parent = Text
 		end
 
-		function _Tabs:CreateTextBox(__Text, _Placeholder, Callback)
+		function _Tabs:CreateTextBox(__Text, _Placeholder, ClearOnFocus, Callback)
 			__Text = __Text or ""
 			_Placeholder = _Placeholder or ""
+			ClearOnFocus = ClearOnFocus or false
 
 			local _Text = Instance.new("TextBox")
 			local UICorner = Instance.new("UICorner")
 
 			_Text.Name = "Text"
 			_Text.Parent = ScrollingFrame_2
-			_Text.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+			_Text.BackgroundColor3 = Color3.fromRGB(35,35,35)
 			_Text.Size = UDim2.new(0, 350, 0, 29)
 			_Text.Font = Enum.Font.SourceSansBold
 			_Text.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+			_Text.ClearTextOnFocus = ClearOnFocus
 			_Text.PlaceholderText = _Placeholder
 			_Text.Text = __Text
 			_Text.TextColor3 = Color3.fromRGB(255, 255, 255)
