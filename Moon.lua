@@ -3,11 +3,11 @@ Written by Tsunamix/Proxide
 
 Documentary can be found at: https://github.com/ItsTsunamix/UiLibrary/blob/main/Documentary.md
 
+Dropdowns are STILL buggy, remember to not put them all the way at the bottom as they will be cut off
+
 Changelog:
 
-1.) Toggles are blue again when enabled
-2.) Dropdowns are now better and have 2 new parameters when creating them (both can be found in the documentary) and fixed a bug with the arrow
-3.) Dropdowns are STILL buggy, remember to not put them all the way at the bottom as they will be cut off
+1.) Added Textboxes (finally)
 
 ]]
 
@@ -465,7 +465,32 @@ function library:Create(Name)
 			UICorner_12.CornerRadius = UDim.new(0, 4)
 			UICorner_12.Parent = Text
 		end
-		
+
+		function _Tabs:CreateTextBox(__Text, _Placeholder, Callback)
+			__Text = __Text or ""
+			_Placeholder = _Placeholder or ""
+
+			local _Text = Instance.new("TextBox")
+			local UICorner = Instance.new("UICorner")
+
+			_Text.Name = "Text"
+			_Text.Parent = ScrollingFrame_2
+			_Text.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+			_Text.Size = UDim2.new(0, 350, 0, 29)
+			_Text.Font = Enum.Font.SourceSansBold
+			_Text.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+			_Text.PlaceholderText = _Placeholder
+			_Text.Text = __Text
+			_Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+			_Text.TextSize = 14.000
+			_Text.FocusLost:Connect(function()
+				Callback(_Text.Text)
+			end)
+
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = _Text
+		end
+
 		function _Tabs:CreateDropdown(Name, ClosesWhenClicked, ZIndex)
 			ClosesWhenClicked = ClosesWhenClicked or false;
 			ZIndex = ZIndex or 5;
