@@ -30,6 +30,6 @@ main:CreateToggle("Toggle", true, function(ToggleState) --creates a toggle (MAKE
 	end
 end)
 
-main:CreateTextBox("TextBox", "Enter Text", function(Text)
-	print("Player typed:", Text)
+main:CreateTextBox("TextBox", "Enter Text", false, function(Text) --1st param is the text by default, 2nd is placeholder, 3rd is if it resets text when clicked
+	print("Player typed:", Text) --because the ClearOnFocus(3) parameter is false, whenever you click on the text box it won't reset the text
 end)
