@@ -29,3 +29,7 @@ main:CreateToggle("Toggle", true, function(ToggleState) --creates a toggle (MAKE
 		print("Disabled.")
 	end
 end)
+
+main:CreateTextBox("TextBox", "Enter Text", function(Text)
+	print("Player typed:", Text)
+end)
