@@ -191,7 +191,7 @@ function library:Create(Name)
 	bottom.BorderSizePixel = 0
 	bottom.Position = UDim2.new(0.0460000001, 0, 0.935000002, 0)
 	bottom.Size = UDim2.new(0, 478, 0, 4)
-	
+
 
 	local ts = game:GetService("TweenService")
 
@@ -736,6 +736,58 @@ function library:Create(Name)
 			UICorner.CornerRadius = UDim.new(0, 4)
 			UICorner.Parent = _Text
 		end
+		
+		function _Tabs:CreateTextFunction(TextName, TextBoxPlaceholder, TextBoxText, ClearOnFocus, Callback)
+			TextName = TextName or ""
+			TextBoxPlaceholder = TextBoxPlaceholder or ""
+			TextBoxText = TextBoxText or ""
+			ClearOnFocus = ClearOnFocus or false
+
+			local TextFunction = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local Text = Instance.new("TextLabel")
+			local TextBox = Instance.new("TextBox")
+			local UICorner_2 = Instance.new("UICorner")
+
+			TextFunction.Name = "TextFunction"
+			TextFunction.Parent = ScrollingFrame_2
+			TextFunction.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			TextFunction.Size = UDim2.new(0, 350, 0, 29)
+
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = TextFunction
+
+			Text.Name = "Text"
+			Text.Parent = TextFunction
+			Text.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			Text.BackgroundTransparency = 1.000
+			Text.Position = UDim2.new(0.0199999996, 0, 0, 0)
+			Text.Size = UDim2.new(0, 250, 0, 29)
+			Text.Font = Enum.Font.SourceSans
+			Text.Text = TextName
+			Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Text.TextSize = 14.000
+			Text.TextXAlignment = Enum.TextXAlignment.Left
+
+			TextBox.Parent = TextFunction
+			TextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+			TextBox.Position = UDim2.new(0.75, 0, 0.103, 0)
+			TextBox.Size = UDim2.new(0, 85, 0, 23)
+			TextBox.Font = Enum.Font.SourceSans
+			TextBox.PlaceholderColor3 = Color3.fromRGB(205, 205, 205)
+			TextBox.PlaceholderText = TextBoxPlaceholder
+			TextBox.Text = TextBoxText
+			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextBox.TextSize = 15.000
+			TextBox.TextWrapped = true
+			TextBox.ClearTextOnFocus = ClearOnFocus
+			TextBox.FocusLost:Connect(function()
+				Callback(TextBox.Text)
+			end)
+
+			UICorner_2.CornerRadius = UDim.new(0, 4)
+			UICorner_2.Parent = TextBox
+		end
 
 		function _Tabs:CreateDropdown(Name, ClosesWhenClicked, ZIndex)
 			ClosesWhenClicked = ClosesWhenClicked or false;
@@ -916,3 +968,4 @@ function library:Create(Name)
 	return _Gui
 end
 return library
+
