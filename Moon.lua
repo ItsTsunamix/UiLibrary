@@ -11,7 +11,6 @@ Changelog:
 
 ]]
 
-
 local function dragify(Frame)
 	local dragToggle = nil
 	local dragSpeed = .25
@@ -75,6 +74,7 @@ function library:Create(Name)
 	local bottom = Instance.new("Frame")
 	local Tabs_Frame = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
+	---------------------------------------------------
 
 	Library.Name = "Library"
 	Library.Parent = game.Players.LocalPlayer.PlayerGui
@@ -191,6 +191,250 @@ function library:Create(Name)
 	bottom.BorderSizePixel = 0
 	bottom.Position = UDim2.new(0.0460000001, 0, 0.935000002, 0)
 	bottom.Size = UDim2.new(0, 478, 0, 4)
+	
+
+	local ts = game:GetService("TweenService")
+
+	function library:Open()
+		local btn = game.Players.LocalPlayer.PlayerGui:WaitForChild("Open")
+		local a = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+		local b = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {TextTransparency = 1})
+		a:Play()
+		b:Play()
+
+		pcall(function()
+			local visibility = true
+			local shit = {"Frame", "ScrollingFrame"}
+			local shit2 = {"TextLabel", "TextBox"}
+			local shit3 = {"ImageButton", "ImageLabel"}
+			for i, v in next, game.Players.LocalPlayer.PlayerGui.Library.Descendant:GetDescendants() do
+				if table.find(shit, v.ClassName) then
+					if visibility == true then
+						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+							local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+
+							tween:Play()
+						end
+					else
+						local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+
+						tween:Play()
+					end
+				elseif table.find(shit2, v.ClassName) then
+					if visibility == true then
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+							tween2:Play()
+						else
+							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+							tween2:Play()
+						end
+						tween:Play()
+					else
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+						tween:Play()
+						tween2:Play()
+					end
+				elseif v.ClassName == "TextButton" then
+					if visibility == true then
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+						tween:Play()
+						tween2:Play()
+					else
+
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+						tween:Play()
+						tween2:Play()
+					end
+				elseif table.find(shit3, v.ClassName) and v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+					if visibility == true then
+						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+							local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 0})
+
+							tween:Play()
+						end
+					else
+						local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 1})
+
+						tween:Play()
+					end
+				end
+			end
+		end)
+	end
+
+	function library:Close()
+		local btn = game.Players.LocalPlayer.PlayerGui:WaitForChild("Open")
+		local a = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+		local b = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {TextTransparency = 0})
+		a:Play()
+		b:Play()
+
+		--pcall(function()
+		local visibility = false
+		local shit = {"Frame", "ScrollingFrame"}
+		local shit2 = {"TextLabel", "TextBox"}
+		local shit3 = {"ImageButton", "ImageLabel"}
+		for i, v in next, game.Players.LocalPlayer.PlayerGui.Library.Descendant:GetDescendants() do
+			if table.find(shit, v.ClassName) then
+				if visibility == true then
+					if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+						local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+
+						tween:Play()
+					end
+				else
+					local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+
+					tween:Play()
+				end
+			elseif table.find(shit2, v.ClassName) then
+				if visibility == true then
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+					if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+						tween2:Play()
+					else
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+						tween2:Play()
+					end
+					tween:Play()
+				else
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+					local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+					tween:Play()
+					tween2:Play()
+				end
+			elseif v.ClassName == "TextButton" then
+				if visibility == true then
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+					local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+					tween:Play()
+					tween2:Play()
+				else
+
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+					local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+					tween:Play()
+					tween2:Play()
+				end
+			elseif table.find(shit3, v.ClassName) and v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+				if visibility == true then
+					if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+						local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 0})
+
+						tween:Play()
+					end
+				else
+					local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 1})
+
+					tween:Play()
+				end
+			end
+		end
+		--end)
+	end
+
+	local Open1 = Instance.new("ScreenGui")
+	local OpenBtn = Instance.new("TextButton")
+	local UICorner = Instance.new("UICorner")
+
+	local shit = {"Frame", "ScrollingFrame"}
+	local shit3 = {"ImageButton", "ImageLabel"}
+	local ts = game:GetService("TweenService")
+
+	Open1.Name = "Open"
+	Open1.Parent = game.Players.LocalPlayer.PlayerGui
+
+	OpenBtn.Name = "OpenBtn"
+	OpenBtn.Parent = Open1
+	OpenBtn.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+	OpenBtn.BackgroundTransparency = 1
+	OpenBtn.TextTransparency = 1
+	OpenBtn.Position = UDim2.new(0.92098093, 0, 0.953206301, 0)
+	OpenBtn.Size = UDim2.new(0, 80, 0, 20)
+	OpenBtn.Font = Enum.Font.SourceSans
+	OpenBtn.Text = "Open"
+	OpenBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	OpenBtn.TextSize = 14.000
+	OpenBtn.MouseButton1Click:Connect(function()
+		local btn = game.Players.LocalPlayer.PlayerGui:WaitForChild("Open")
+		local a = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+		local b = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {TextTransparency = 1})
+		a:Play()
+		b:Play()
+
+		pcall(function()
+			local visibility = true
+			local shit = {"Frame", "ScrollingFrame"}
+			local shit2 = {"TextLabel", "TextBox"}
+			local shit3 = {"ImageButton", "ImageLabel"}
+			for i, v in next, game.Players.LocalPlayer.PlayerGui.Library.Descendant:GetDescendants() do
+				if table.find(shit, v.ClassName) then
+					if visibility == true then
+						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+							local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+
+							tween:Play()
+						end
+					else
+						local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+
+						tween:Play()
+					end
+				elseif table.find(shit2, v.ClassName) then
+					if visibility == true then
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+							tween2:Play()
+						else
+							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+							tween2:Play()
+						end
+						tween:Play()
+					else
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+						tween:Play()
+						tween2:Play()
+					end
+				elseif v.ClassName == "TextButton" then
+					if visibility == true then
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+						tween:Play()
+						tween2:Play()
+					else
+
+						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+						tween:Play()
+						tween2:Play()
+					end
+				elseif table.find(shit3, v.ClassName) and v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+					if visibility == true then
+						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+							local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 0})
+
+							tween:Play()
+						end
+					else
+						local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 1})
+
+						tween:Play()
+					end
+				end
+			end
+		end)
+	end)
+
+	UICorner.CornerRadius = UDim.new(0, 6)
+	UICorner.Parent = OpenBtn
 
 	local _Gui = {};
 
@@ -449,11 +693,11 @@ function library:Create(Name)
 			UICorner_9.CornerRadius = UDim.new(0, 4)
 			UICorner_9.Parent = Checked
 		end
-		
+
 		function _Tabs:CreateLabel(_Text)
 			local Text = Instance.new("TextLabel")
 			local UICorner_12 = Instance.new("UICorner")
-			
+
 			Text.Parent = ScrollingFrame_2
 			Text.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Text.Size = UDim2.new(0, 350, 0, 29)
@@ -496,15 +740,15 @@ function library:Create(Name)
 		function _Tabs:CreateDropdown(Name, ClosesWhenClicked, ZIndex)
 			ClosesWhenClicked = ClosesWhenClicked or false;
 			ZIndex = ZIndex or 5;
-			
+
 			local _Dropdown = {}
-			
+
 			local Dropdown = Instance.new("TextButton")
 			local UICorner_10 = Instance.new("UICorner")
 			local TextLabel_3 = Instance.new("TextLabel")
 			local arrow_drop_down = Instance.new("ImageLabel")
 			local DropdownContent = Instance.new("Frame")
-			
+
 
 			Dropdown.Name = "Dropdown"
 			Dropdown.Parent = ScrollingFrame_2
@@ -550,7 +794,7 @@ function library:Create(Name)
 			DropdownContent.Position = UDim2.new(0, 0, 0, 34)
 			DropdownContent.Size = UDim2.new(1, 0, 0, 0)
 			DropdownContent.ZIndex = ZIndex
-			
+
 			Dropdown.MouseButton1Click:Connect(function()
 				local tween = game:GetService("TweenService")
 				if DropdownContent.Size == UDim2.new(1,0,0,0) then    
@@ -566,7 +810,7 @@ function library:Create(Name)
 					tweenp:Play()
 				end   
 			end)
-			
+
 			function _Dropdown:AddButton(Name, Callback)
 
 				local DropdownTop = Instance.new("Frame")
@@ -607,7 +851,7 @@ function library:Create(Name)
 				DropdownButton.Text = ""
 				DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 				DropdownButton.TextSize = 14.000
-				
+
 				UIListLayout_3.Parent = DropdownContent
 				UIListLayout_3.HorizontalAlignment = Enum.HorizontalAlignment.Center
 				UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
@@ -632,10 +876,10 @@ function library:Create(Name)
 				Sample_3.Image = "http://www.roblox.com/asset/?id=4560909609"
 				Sample_3.ImageTransparency = 0.600
 				Sample_3.ZIndex = ZIndex
-				
+
 				DropdownButton.MouseButton1Click:Connect(function()
 					Callback()
-					
+
 					local tween = game:GetService("TweenService")
 					if ClosesWhenClicked then    
 						local tweenp = tween:Create(DropdownContent,TweenInfo.new(.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size = UDim2.new(1,0,0,0)})
@@ -663,7 +907,7 @@ function library:Create(Name)
 					end
 					c:Destroy()
 				end)
-				
+
 			end
 			return _Dropdown
 		end
