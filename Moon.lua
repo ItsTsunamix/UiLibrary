@@ -7,7 +7,10 @@ Dropdowns are STILL buggy, remember to not put them all the way at the bottom as
 
 Changelog:
 
-1.) Added Textboxes (finally)
+1.) Added Macros
+2.) Added TextFunctions, 5 parameters (lol)
+3.) Macros now have arguments, as of now only library:Close() is the one with a parameter, bool (if true then open gui will show, else it won't, useful for making keybinded opens)
+4.) Fixed a bug with scrolling frames not working with Open macro (enjoy it, it took me 500 fucking hours and missed out on 2 hours for studying for my fucking math test)
 
 ]]
 
@@ -202,77 +205,76 @@ function library:Create(Name)
 		a:Play()
 		b:Play()
 
-		pcall(function()
-			local visibility = true
-			local shit = {"Frame", "ScrollingFrame"}
-			local shit2 = {"TextLabel", "TextBox"}
-			local shit3 = {"ImageButton", "ImageLabel"}
-			for i, v in next, game.Players.LocalPlayer.PlayerGui.Library.Descendant:GetDescendants() do
-				if table.find(shit, v.ClassName) then
-					if visibility == true then
-						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-							local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-
-							tween:Play()
-						end
-					else
-						local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-
-						tween:Play()
-					end
-				elseif table.find(shit2, v.ClassName) then
-					if visibility == true then
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
-						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-							tween2:Play()
-						else
-							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-							tween2:Play()
-						end
-						tween:Play()
-					else
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
-						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-						tween:Play()
-						tween2:Play()
-					end
-				elseif v.ClassName == "TextButton" then
-					if visibility == true then
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+		--pcall(function()
+		local visibility = true
+		local shit = {"Frame", "ScrollingFrame"}
+		local shit2 = {"TextLabel", "TextBox"}
+		local shit3 = {"ImageButton", "ImageLabel"}
+		for i, v in next, game.Players.LocalPlayer.PlayerGui.Library.Descendant:GetDescendants() do
+			if table.find(shit, v.ClassName) then
+				if v.ClassName == "ScrollingFrame" then
+					ts:Create(v, TweenInfo.new(0.5), {ScrollBarImageTransparency = 0}):Play()
+				end
+				if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+					local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+					tween:Play()
+				end
+			elseif table.find(shit2, v.ClassName) then
+				if visibility == true then
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+					if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
 						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-						tween:Play()
 						tween2:Play()
 					else
-
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
 						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-						tween:Play()
 						tween2:Play()
 					end
-				elseif table.find(shit3, v.ClassName) and v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-					if visibility == true then
-						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-							local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 0})
+					tween:Play()
+				else
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+					local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+					tween:Play()
+					tween2:Play()
+				end
+			elseif v.ClassName == "TextButton" then
+				if visibility == true then
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
+					local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+					tween:Play()
+					tween2:Play()
+				else
 
-							tween:Play()
-						end
-					else
-						local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 1})
+					local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
+					local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+					tween:Play()
+					tween2:Play()
+				end
+			elseif table.find(shit3, v.ClassName) and v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+				if visibility == true then
+					if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
+						local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 0})
 
 						tween:Play()
 					end
+				else
+					local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 1})
+
+					tween:Play()
 				end
 			end
-		end)
+		end
+		--end)
 	end
 
-	function library:Close()
-		local btn = game.Players.LocalPlayer.PlayerGui:WaitForChild("Open")
-		local a = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-		local b = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {TextTransparency = 0})
-		a:Play()
-		b:Play()
+	function library:Close(OpenVisible)
+		OpenVisible = OpenVisible or true
+		if OpenVisible then
+			local btn = game.Players.LocalPlayer.PlayerGui:WaitForChild("Open")
+			local a = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {BackgroundTransparency = 0})
+			local b = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {TextTransparency = 0})
+			a:Play()
+			b:Play()
+		end
 
 		--pcall(function()
 		local visibility = false
@@ -281,16 +283,10 @@ function library:Create(Name)
 		local shit3 = {"ImageButton", "ImageLabel"}
 		for i, v in next, game.Players.LocalPlayer.PlayerGui.Library.Descendant:GetDescendants() do
 			if table.find(shit, v.ClassName) then
-				if visibility == true then
-					if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-						local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-
-						tween:Play()
-					end
-				else
-					local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-
-					tween:Play()
+				local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
+				tween:Play()
+				if v.ClassName == "ScrollingFrame" then
+					ts:Create(v, TweenInfo.new(0.5), {ScrollBarImageTransparency = 1}):Play()
 				end
 			elseif table.find(shit2, v.ClassName) then
 				if visibility == true then
@@ -362,75 +358,7 @@ function library:Create(Name)
 	OpenBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	OpenBtn.TextSize = 14.000
 	OpenBtn.MouseButton1Click:Connect(function()
-		local btn = game.Players.LocalPlayer.PlayerGui:WaitForChild("Open")
-		local a = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-		local b = ts:Create(btn.OpenBtn, TweenInfo.new(0.5), {TextTransparency = 1})
-		a:Play()
-		b:Play()
-
-		pcall(function()
-			local visibility = true
-			local shit = {"Frame", "ScrollingFrame"}
-			local shit2 = {"TextLabel", "TextBox"}
-			local shit3 = {"ImageButton", "ImageLabel"}
-			for i, v in next, game.Players.LocalPlayer.PlayerGui.Library.Descendant:GetDescendants() do
-				if table.find(shit, v.ClassName) then
-					if visibility == true then
-						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-							local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-
-							tween:Play()
-						end
-					else
-						local tween = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-
-						tween:Play()
-					end
-				elseif table.find(shit2, v.ClassName) then
-					if visibility == true then
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
-						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-							tween2:Play()
-						else
-							local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-							tween2:Play()
-						end
-						tween:Play()
-					else
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
-						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-						tween:Play()
-						tween2:Play()
-					end
-				elseif v.ClassName == "TextButton" then
-					if visibility == true then
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 0})
-						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 0})
-						tween:Play()
-						tween2:Play()
-					else
-
-						local tween = ts:Create(v, TweenInfo.new(0.5), {TextTransparency = 1})
-						local tween2 = ts:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1})
-						tween:Play()
-						tween2:Play()
-					end
-				elseif table.find(shit3, v.ClassName) and v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-					if visibility == true then
-						if v.BackgroundColor3 ~= Color3.fromRGB(255, 255, 255) then
-							local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 0})
-
-							tween:Play()
-						end
-					else
-						local tween = ts:Create(v, TweenInfo.new(0.5), {ImageTransparency = 1})
-
-						tween:Play()
-					end
-				end
-			end
-		end)
+		library:Open()
 	end)
 
 	UICorner.CornerRadius = UDim.new(0, 6)
@@ -759,7 +687,7 @@ function library:Create(Name)
 
 			Text.Name = "Text"
 			Text.Parent = TextFunction
-			Text.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			Text.BackgroundTransparency = 1.000
 			Text.Position = UDim2.new(0.0199999996, 0, 0, 0)
 			Text.Size = UDim2.new(0, 250, 0, 29)
