@@ -1,5 +1,5 @@
---Written by Tsunamix/Proxide
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ItsTsunamix/UiLibrary/main/Moon.lua", true))();
+--Written by Proxide
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pandora37/UiLibrary/main/MoonLibrary.lua", true))();
 -- //////////////////////////////////////////////////////////////////////
 local libraryname = library:Create("Moon Library"); --name of lib
 
