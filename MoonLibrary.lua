@@ -617,12 +617,12 @@ function library:Create(Name)
 			UICorner_9.CornerRadius = UDim.new(0, 4)
 			UICorner_9.Parent = Checked
 		end
-		
+
 		function _Tabs:CreateSlider(_Name, Minumum, Maximum, Callback)
 			_Name = _Name or ""
 			Minumum = Minumum or 1
 			Maximum = Maximum or 100
-			
+
 			local Slider = Instance.new("Frame")
 			local UICorner = Instance.new("UICorner")
 			local SliderName = Instance.new("TextLabel")
@@ -648,7 +648,7 @@ function library:Create(Name)
 			SliderName.Position = UDim2.new(0.0170000009, 0, 0.0500000007, 0)
 			SliderName.Size = UDim2.new(0, 197, 0, 20)
 			SliderName.Font = Enum.Font.SourceSans
-			SliderName.Text = Slider
+			SliderName.Text = "Slider"
 			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderName.TextSize = 14.000
 			SliderName.TextXAlignment = Enum.TextXAlignment.Left
@@ -658,7 +658,7 @@ function library:Create(Name)
 			Fill.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
 			Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Fill.BorderSizePixel = 0
-			Fill.Position = UDim2.new(0.00800000038, 0, 0.790000021, 0)
+			Fill.Position = UDim2.new(0.015, 0, 0.790000021, 0)
 			Fill.Size = UDim2.new(0, 340, 0, 4)
 
 			SliderButton.Name = "SliderButton"
@@ -667,7 +667,7 @@ function library:Create(Name)
 			SliderButton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
 			SliderButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SliderButton.BorderSizePixel = 0
-			SliderButton.Position = UDim2.new(0.0120000001, 0, 0.349999994, 0)
+			SliderButton.Position = UDim2.new(0, 0, 0.349999994, 0)
 			SliderButton.Size = UDim2.new(0, 8, 0, 8)
 			SliderButton.AutoButtonColor = false
 			SliderButton.Font = Enum.Font.SourceSans
@@ -735,11 +735,11 @@ function library:Create(Name)
 			UICorner_12.CornerRadius = UDim.new(0, 4)
 			UICorner_12.Parent = Text
 		end
-		
+
 		function _Tabs:ExpandBy(Int)
 			Int = Int or 10
 			local Expander = Instance.new("Frame")
-			
+
 			Expander.Name = "Expander"
 			Expander.Parent = ScrollingFrame_2
 			Expander.BackgroundTransparency = 1
