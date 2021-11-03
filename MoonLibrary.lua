@@ -667,8 +667,8 @@ function library:Create(Name)
 			SliderButton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
 			SliderButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SliderButton.BorderSizePixel = 0
-			SliderButton.Position = UDim2.new(0.0120000001, 0, 0.449999988, 0)
-			SliderButton.Size = UDim2.new(0, 6, 0, 6)
+			SliderButton.Position = UDim2.new(0.0120000001, 0, 0.349999994, 0)
+			SliderButton.Size = UDim2.new(0, 8, 0, 8)
 			SliderButton.AutoButtonColor = false
 			SliderButton.Font = Enum.Font.SourceSans
 			SliderButton.Text = ""
