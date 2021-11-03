@@ -1,16 +1,12 @@
 --[[
-Written by Tsunamix/Proxide
+Written by Pandora37
 
-Documentary can be found at: https://github.com/ItsTsunamix/UiLibrary/blob/main/Documentary.md
-
-Dropdowns are STILL buggy, remember to not put them all the way at the bottom as they will be cut off
+Documentary can be found at: https://github.com/Pandora37/UiLibrary/blob/main/Documentary.md
 
 Changelog:
 
-1.) Added Macros
-2.) Added TextFunctions, 5 parameters (lol)
-3.) Macros now have arguments, as of now only library:Close() is the one with a parameter, bool (if true then open gui will show, else it won't, useful for making keybinded opens)
-4.) Fixed a bug with scrolling frames not working with Open macro (enjoy it, it took me 500 fucking hours and missed out on 2 hours for studying for my fucking math test)
+1.) Added Sliders, uses 4 parameters (Name, Minimum, Maximum, Callback) in the future, I might add a default slider position
+2.) Added a fix for Dropdowns, ExpandBy function, uses 1 parameter, Integer.
 
 ]]
 
@@ -621,6 +617,108 @@ function library:Create(Name)
 			UICorner_9.CornerRadius = UDim.new(0, 4)
 			UICorner_9.Parent = Checked
 		end
+		
+		function _Tabs:CreateSlider(_Name, Minumum, Maximum, Callback)
+			_Name = _Name or ""
+			Minumum = Minumum or 1
+			Maximum = Maximum or 100
+			
+			local Slider = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local SliderName = Instance.new("TextLabel")
+			local Fill = Instance.new("Frame")
+			local SliderButton = Instance.new("TextButton")
+			local UICorner_2 = Instance.new("UICorner")
+			local UICorner_3 = Instance.new("UICorner")
+			local SliderInteger = Instance.new("TextLabel")
+
+			Slider.Name = "Slider"
+			Slider.Parent = ScrollingFrame_2
+			Slider.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+			Slider.Position = UDim2.new(0.148097828, 0, 0.236607149, 0)
+			Slider.Size = UDim2.new(0, 350, 0, 41)
+
+			UICorner.CornerRadius = UDim.new(0, 5)
+			UICorner.Parent = Slider
+
+			SliderName.Name = "SliderName"
+			SliderName.Parent = Slider
+			SliderName.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+			SliderName.BackgroundTransparency = 1.000
+			SliderName.Position = UDim2.new(0.0170000009, 0, 0.0500000007, 0)
+			SliderName.Size = UDim2.new(0, 197, 0, 20)
+			SliderName.Font = Enum.Font.SourceSans
+			SliderName.Text = "Slider"
+			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			SliderName.TextSize = 14.000
+			SliderName.TextXAlignment = Enum.TextXAlignment.Left
+
+			Fill.Name = "Fill"
+			Fill.Parent = Slider
+			Fill.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+			Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Fill.BorderSizePixel = 0
+			Fill.Position = UDim2.new(0.00800000038, 0, 0.790000021, 0)
+			Fill.Size = UDim2.new(0, 340, 0, 4)
+
+			SliderButton.Name = "SliderButton"
+			SliderButton.Parent = Fill
+			SliderButton.AnchorPoint = Vector2.new(0.5, 0.5)
+			SliderButton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+			SliderButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			SliderButton.BorderSizePixel = 0
+			SliderButton.Position = UDim2.new(0.0120000001, 0, 0.449999988, 0)
+			SliderButton.Size = UDim2.new(0, 6, 0, 6)
+			SliderButton.AutoButtonColor = false
+			SliderButton.Font = Enum.Font.SourceSans
+			SliderButton.Text = ""
+			SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			SliderButton.TextSize = 14.000
+
+			UICorner_2.CornerRadius = UDim.new(1, 0)
+			UICorner_2.Parent = SliderButton
+
+			UICorner_3.CornerRadius = UDim.new(1, 0)
+			UICorner_3.Parent = Fill
+
+			SliderInteger.Name = "SliderInteger"
+			SliderInteger.Parent = Slider
+			SliderInteger.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+			SliderInteger.BackgroundTransparency = 1.000
+			SliderInteger.Position = UDim2.new(0.821522415, 0, 0.024390243, 0)
+			SliderInteger.Size = UDim2.new(0, 55, 0, 20)
+			SliderInteger.Font = Enum.Font.SourceSans
+			SliderInteger.Text = "0/"..Maximum
+			SliderInteger.TextColor3 = Color3.fromRGB(255, 255, 255)
+			SliderInteger.TextSize = 14.000
+			SliderInteger.TextXAlignment = Enum.TextXAlignment.Right
+
+			local UserInputService = game:GetService("UserInputService")
+			local Dragging = false
+			SliderButton.MouseButton1Down:Connect(function()
+				SliderButton.BackgroundColor3 = Color3.fromRGB(0, 185, 255)
+				Dragging = true
+			end)
+
+			UserInputService.InputChanged:Connect(function()
+				if Dragging then
+					local MousePos = UserInputService:GetMouseLocation()+Vector2.new(0,36)
+					local RelPos = MousePos-Fill.AbsolutePosition
+					local Percent = math.clamp(RelPos.X/Fill.AbsoluteSize.X,0,1)
+					SliderButton.Position = UDim2.new(Percent,0,0.5,0)
+					SliderInteger.Text = math.floor(Percent*Maximum).. "/"..Maximum
+					Callback(math.floor(Percent*Maximum))
+				end
+			end)
+
+			UserInputService.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					Dragging = false
+					SliderButton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+				end
+			end)
+
+		end
 
 		function _Tabs:CreateLabel(_Text)
 			local Text = Instance.new("TextLabel")
@@ -636,6 +734,16 @@ function library:Create(Name)
 
 			UICorner_12.CornerRadius = UDim.new(0, 4)
 			UICorner_12.Parent = Text
+		end
+		
+		function _Tabs:ExpandBy(Int)
+			Int = Int or 10
+			local Expander = Instance.new("Frame")
+			
+			Expander.Name = "Expander"
+			Expander.Parent = ScrollingFrame_2
+			Expander.BackgroundTransparency = 1
+			Expander.Size = UDim2.new(0, 350, 0, Int)
 		end
 
 		function _Tabs:CreateTextBox(__Text, _Placeholder, ClearOnFocus, Callback)
@@ -664,7 +772,7 @@ function library:Create(Name)
 			UICorner.CornerRadius = UDim.new(0, 4)
 			UICorner.Parent = _Text
 		end
-		
+
 		function _Tabs:CreateTextFunction(TextName, TextBoxPlaceholder, TextBoxText, ClearOnFocus, Callback)
 			TextName = TextName or ""
 			TextBoxPlaceholder = TextBoxPlaceholder or ""
