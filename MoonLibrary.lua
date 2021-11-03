@@ -688,7 +688,7 @@ function library:Create(Name)
 			SliderInteger.Position = UDim2.new(0.821522415, 0, 0.024390243, 0)
 			SliderInteger.Size = UDim2.new(0, 55, 0, 20)
 			SliderInteger.Font = Enum.Font.SourceSans
-			SliderInteger.Text = "0/"..Maximum
+			SliderInteger.Text = Minumum.."/"..Maximum
 			SliderInteger.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderInteger.TextSize = 14.000
 			SliderInteger.TextXAlignment = Enum.TextXAlignment.Right
