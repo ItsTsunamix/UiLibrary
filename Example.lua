@@ -17,7 +17,6 @@ dropdown:AddButton("Dropdown Option 2", function()
 	print("You clicked on the second dropdown option.")
 end)
 
-
 main:CreateButton("Button", function() --creates a button
 	print("Hello")
 end)
@@ -42,5 +41,3 @@ main:CreateSlider("Slider", 16, 100, function(amount) --pretty much a textfuncti
 	print(amount)
 	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = amount
 end)
-
-
