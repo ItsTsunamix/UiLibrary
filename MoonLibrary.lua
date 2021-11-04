@@ -5,7 +5,7 @@ Documentary can be found at: https://github.com/Pandora37/UiLibrary/blob/main/Do
 
 Changelog:
 
-1.) Removed sliders temporarily
+1.) Sliders are back, got a redesign and now use tweenservice for sliding.
 2.) Added a fix for Dropdowns, ExpandBy function, uses 1 parameter, Integer.
 
 ]]
@@ -616,6 +616,226 @@ function library:Create(Name)
 
 			UICorner_9.CornerRadius = UDim.new(0, 4)
 			UICorner_9.Parent = Checked
+		end
+
+		function _Tabs:CreateSlider(_Name, Minimum, Maximum, Callback)
+			_Name = _Name or ""
+			Minimum = Minimum or 1
+			Maximum = Maximum or 100
+			
+			local Slider = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local SliderName = Instance.new("TextLabel")
+			local Value = Instance.new("TextLabel")
+			local Slider2 = Instance.new("TextButton")
+			local Indicator = Instance.new("Frame")
+			local UICorner_2 = Instance.new("UICorner")
+			local HolderButton = Instance.new("TextLabel")
+			local UICorner_3 = Instance.new("UICorner")
+			local ArrowPointingDown = Instance.new("TextLabel")
+			local UICorner_4 = Instance.new("UICorner")
+			local Value2 = Instance.new("TextLabel")
+			local UICorner_5 = Instance.new("UICorner")
+			local UICorner_6 = Instance.new("UICorner")
+			local UIGradient = Instance.new("UIGradient")
+
+			Slider.Name = "Slider"
+			Slider.Parent = ScrollingFrame_2
+			Slider.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+			Slider.Position = UDim2.new(0.148097828, 0, 0.236607149, 0)
+			Slider.Size = UDim2.new(0, 350, 0, 41)
+
+			UICorner.CornerRadius = UDim.new(0, 5)
+			UICorner.Parent = Slider
+
+			SliderName.Name = "SliderName"
+			SliderName.Parent = Slider
+			SliderName.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+			SliderName.BackgroundTransparency = 1.000
+			SliderName.Position = UDim2.new(0.0170000009, 0, 0.0500000007, 0)
+			SliderName.Size = UDim2.new(0, 197, 0, 20)
+			SliderName.Font = Enum.Font.SourceSans
+			SliderName.Text = "Slider"
+			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			SliderName.TextSize = 14.000
+			SliderName.TextXAlignment = Enum.TextXAlignment.Left
+
+			Value.Name = "Value"
+			Value.Parent = Slider
+			Value.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+			Value.BackgroundTransparency = 1.000
+			Value.Position = UDim2.new(0.821522415, 0, 0.024390243, 0)
+			Value.Size = UDim2.new(0, 55, 0, 20)
+			Value.Font = Enum.Font.SourceSans
+			Value.Text = "int"
+			Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Value.TextSize = 14.000
+			Value.TextXAlignment = Enum.TextXAlignment.Right
+
+			Slider2.Name = "Slider2"
+			Slider2.Parent = Slider
+			Slider2.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+			Slider2.BorderSizePixel = 0
+			Slider2.Position = UDim2.new(0.0179999992, 0, 0.800000012, 0)
+			Slider2.Size = UDim2.new(0, 338, 0, 4)
+			Slider2.AutoButtonColor = false
+			Slider2.Font = Enum.Font.SourceSans
+			Slider2.Text = ""
+			Slider2.TextColor3 = Color3.fromRGB(0, 0, 0)
+			Slider2.TextSize = 14.000
+
+			Indicator.Name = "Indicator"
+			Indicator.Parent = Slider2
+			Indicator.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+			Indicator.BorderSizePixel = 0
+			Indicator.Size = UDim2.new(0, 0, 1, 0)
+
+			UICorner_2.CornerRadius = UDim.new(0, 2)
+			UICorner_2.Parent = Indicator
+
+			HolderButton.Name = "HolderButton"
+			HolderButton.Parent = Indicator
+			HolderButton.AnchorPoint = Vector2.new(0.5, 0.5)
+			HolderButton.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+			HolderButton.Position = UDim2.new(1, 0, 0.5, 0)
+			HolderButton.Size = UDim2.new(0, 6, 0, 6)
+			HolderButton.Visible = false
+			HolderButton.Font = Enum.Font.SourceSans
+			HolderButton.Text = ""
+			HolderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			HolderButton.TextSize = 14.000
+
+			UICorner_3.CornerRadius = UDim.new(1, 0)
+			UICorner_3.Parent = HolderButton
+
+			ArrowPointingDown.Name = "ArrowPointingDown"
+			ArrowPointingDown.Parent = HolderButton
+			ArrowPointingDown.AnchorPoint = Vector2.new(0.5, 0.5)
+			ArrowPointingDown.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+			ArrowPointingDown.BackgroundTransparency = 1.000
+			ArrowPointingDown.Position = UDim2.new(0.5, 0, -0.75, 0)
+			ArrowPointingDown.Rotation = 45.000
+			ArrowPointingDown.Size = UDim2.new(0, 13, 0, 13)
+			ArrowPointingDown.Visible = false
+			ArrowPointingDown.ZIndex = 0
+			ArrowPointingDown.Font = Enum.Font.Ubuntu
+			ArrowPointingDown.Text = ""
+			ArrowPointingDown.TextColor3 = Color3.fromRGB(255, 255, 255)
+			ArrowPointingDown.TextSize = 14.000
+
+			UICorner_4.CornerRadius = UDim.new(0, 3)
+			UICorner_4.Parent = ArrowPointingDown
+
+			Value2.Name = "Value2"
+			Value2.Parent = HolderButton
+			Value2.AnchorPoint = Vector2.new(0.5, 0.5)
+			Value2.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+			Value2.BackgroundTransparency = 1.000
+			Value2.Position = UDim2.new(0.5, 0, -1, 0)
+			Value2.Size = UDim2.new(0, 36, 0, 18)
+			Value2.Visible = false
+			Value2.Font = Enum.Font.Ubuntu
+			Value2.Text = "0"
+			Value2.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Value2.TextSize = 14.000
+			Value2.TextTransparency = 1.000
+
+			UICorner_5.CornerRadius = UDim.new(0, 3)
+			UICorner_5.Parent = Value2
+
+			UICorner_6.CornerRadius = UDim.new(0, 2)
+			UICorner_6.Parent = Slider2
+
+			UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(200, 200, 200)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+			UIGradient.Parent = Slider2
+
+				local UserInputService = game:GetService("UserInputService")
+				local TweenService = game:GetService("TweenService")
+				local Dragging = false
+
+				local Slide = 0
+
+				local function Update()
+					if Dragging == true then
+						local MousePos = UserInputService:GetMouseLocation()
+					local MinPoint = (Slider2.AbsolutePosition.X)
+					local MaxPoint = (Slider2.AbsolutePosition.X + Slider2.AbsoluteSize.X)
+
+						if MousePos.X < MinPoint then
+						Slider2.Indicator:TweenSize(UDim2.fromScale(0, 1), "Out", "Sine", 0.1, true)
+						elseif MousePos.X > MaxPoint then
+						Slider2.Indicator:TweenSize(UDim2.fromScale(1, 1), "Out", "Sine", 0.1, true)
+						else
+						Slider2.Indicator:TweenSize(UDim2.fromScale((MousePos.X - Slider2.AbsolutePosition.X) / Slider2.AbsoluteSize.X, 1), "Out", "Sine", 0.1, true)
+						end
+
+						wait(0.1)
+
+					local Percent = (HolderButton.AbsolutePosition.X - Slider2.AbsolutePosition.X) / (Slider2.AbsoluteSize.X - HolderButton.Size.X.Offset) * Maximum
+
+						Slide = Percent
+
+						if math.floor(Slide) < Minimum then
+							Slide = Minimum
+						elseif math.floor(Slide) > Maximum then
+							Slide = Maximum
+						end
+
+						--Slider.Parent.AbsoluteValue.Text = Percent
+						--Slider.Indicator.HolderButton.Value.Text = tostring(math.floor(Slide))
+						Value.Text = tostring(math.floor(Slide)).."/"..Maximum
+						--game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = math.floor(Slide)
+						Callback(math.floor(Slide))
+					end
+				end
+
+			Slider2.MouseEnter:Connect(function()
+					if Dragging == false then
+					TweenService:Create(Slider2.Indicator, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(95, 95, 95)}):Play()
+					TweenService:Create(Slider2.Indicator.HolderButton, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(200, 200, 200)}):Play()
+					end
+				end)
+
+			Slider2.MouseLeave:Connect(function()
+					if Dragging == false then
+					TweenService:Create(Slider2.Indicator, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(120, 120, 120)}):Play()
+					TweenService:Create(Slider2.Indicator.HolderButton, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(190, 190, 190)}):Play()
+					end	
+				end)
+
+			Slider2.MouseButton1Down:Connect(function()
+					Dragging = true
+				TweenService:Create(Slider2.Indicator, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(120, 120, 120)}):Play()
+				TweenService:Create(Slider2.Indicator.HolderButton, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+					--TweenService:Create(Slider.Indicator.HolderButton.Value, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundTransparency = 0, TextTransparency = 0}):Play()
+				TweenService:Create(Slider2.Indicator.HolderButton.ArrowPointingDown, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+					Update()
+				end)
+
+				UserInputService.InputEnded:Connect(function(Input)
+					if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+						Dragging = false
+						TweenService:Create(Indicator, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(95, 95, 95)}):Play()
+						TweenService:Create(HolderButton, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(190, 190, 190)}):Play()
+						--TweenService:Create(Slider.Indicator.HolderButton.Value, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
+						TweenService:Create(ArrowPointingDown, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+					end
+				end)
+
+				UserInputService.InputChanged:Connect(Update)
+
+			local Percent = (HolderButton.AbsolutePosition.X - Slider2.AbsolutePosition.X) / (Slider2.AbsoluteSize.X - HolderButton.Size.X.Offset) * Maximum
+
+				Slide = Percent
+
+				if math.floor(Slide) < Minimum then
+					Slide = Minimum
+				elseif math.floor(Slide) > Maximum then
+					Slide = Maximum
+				end
+
+				--Slider.Indicator.HolderButton.Value.Text = tostring(math.floor(Slide))
+				Value.Text = tostring(math.floor(Slide)).."/"..Maximum
 		end
 
 		function _Tabs:CreateLabel(_Text)
