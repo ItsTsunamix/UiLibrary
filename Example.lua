@@ -38,4 +38,9 @@ main:CreateTextFunction("Textbox Function", "Text", "Text", true, function(amoun
 	print(amount)
 end)
 
+main:CreateSlider("Slider", 16, 100, function(amount) --pretty much a textfunction, 1st param is the name, 2nd is the minumum, 3rd is the max, and 4th is the callback
+	print(amount)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = amount
+end)
+
 
