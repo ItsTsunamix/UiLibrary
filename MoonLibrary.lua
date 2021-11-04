@@ -7,6 +7,7 @@ Changelog:
 
 1.) Sliders are back, got a redesign and now use tweenservice for sliding.
 2.) Added a fix for Dropdowns, ExpandBy function, uses 1 parameter, Integer.
+3.) Added Pause macro, library:Pause(<bool> is_paused)
 
 ]]
 
@@ -261,6 +262,11 @@ function library:Create(Name)
 		end
 		--end)
 	end
+
+    function library:Pause(IsPaused)
+        IsPaused = IsPaused or true
+        game.Players.LocalPlayer.GameplayPaused = IsPaused
+    end
 
 	function library:Close(OpenVisible)
 		OpenVisible = OpenVisible or true
