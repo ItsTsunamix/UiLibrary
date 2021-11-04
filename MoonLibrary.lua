@@ -5,7 +5,7 @@ Documentary can be found at: https://github.com/Pandora37/UiLibrary/blob/main/Do
 
 Changelog:
 
-1.) Added Sliders, uses 4 parameters (Name, Minimum, Maximum, Callback) in the future, I might add a default slider position
+1.) Removed sliders temporarily
 2.) Added a fix for Dropdowns, ExpandBy function, uses 1 parameter, Integer.
 
 ]]
@@ -616,108 +616,6 @@ function library:Create(Name)
 
 			UICorner_9.CornerRadius = UDim.new(0, 4)
 			UICorner_9.Parent = Checked
-		end
-
-		function _Tabs:CreateSlider(_Name, Minumum, Maximum, Callback)
-			_Name = _Name or ""
-			Minumum = Minumum or 1
-			Maximum = Maximum or 100
-
-			local Slider = Instance.new("Frame")
-			local UICorner = Instance.new("UICorner")
-			local SliderName = Instance.new("TextLabel")
-			local Fill = Instance.new("Frame")
-			local SliderButton = Instance.new("TextButton")
-			local UICorner_2 = Instance.new("UICorner")
-			local UICorner_3 = Instance.new("UICorner")
-			local SliderInteger = Instance.new("TextLabel")
-
-			Slider.Name = "Slider"
-			Slider.Parent = ScrollingFrame_2
-			Slider.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
-			Slider.Position = UDim2.new(0.148097828, 0, 0.236607149, 0)
-			Slider.Size = UDim2.new(0, 350, 0, 41)
-
-			UICorner.CornerRadius = UDim.new(0, 5)
-			UICorner.Parent = Slider
-
-			SliderName.Name = "SliderName"
-			SliderName.Parent = Slider
-			SliderName.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
-			SliderName.BackgroundTransparency = 1.000
-			SliderName.Position = UDim2.new(0.0170000009, 0, 0.0500000007, 0)
-			SliderName.Size = UDim2.new(0, 197, 0, 20)
-			SliderName.Font = Enum.Font.SourceSans
-			SliderName.Text = _Name
-			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
-			SliderName.TextSize = 14.000
-			SliderName.TextXAlignment = Enum.TextXAlignment.Left
-
-			Fill.Name = "Fill"
-			Fill.Parent = Slider
-			Fill.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-			Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Fill.BorderSizePixel = 0
-			Fill.Position = UDim2.new(0.015, 0, 0.790000021, 0)
-			Fill.Size = UDim2.new(0, 340, 0, 4)
-
-			SliderButton.Name = "SliderButton"
-			SliderButton.Parent = Fill
-			SliderButton.AnchorPoint = Vector2.new(0.5, 0.5)
-			SliderButton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
-			SliderButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			SliderButton.BorderSizePixel = 0
-			SliderButton.Position = UDim2.new(0, 0, 0.349999994, 0)
-			SliderButton.Size = UDim2.new(0, 8, 0, 8)
-			SliderButton.AutoButtonColor = false
-			SliderButton.Font = Enum.Font.SourceSans
-			SliderButton.Text = ""
-			SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-			SliderButton.TextSize = 14.000
-
-			UICorner_2.CornerRadius = UDim.new(1, 0)
-			UICorner_2.Parent = SliderButton
-
-			UICorner_3.CornerRadius = UDim.new(1, 0)
-			UICorner_3.Parent = Fill
-
-			SliderInteger.Name = "SliderInteger"
-			SliderInteger.Parent = Slider
-			SliderInteger.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
-			SliderInteger.BackgroundTransparency = 1.000
-			SliderInteger.Position = UDim2.new(0.821522415, 0, 0.024390243, 0)
-			SliderInteger.Size = UDim2.new(0, 55, 0, 20)
-			SliderInteger.Font = Enum.Font.SourceSans
-			SliderInteger.Text = Minumum.."/"..Maximum
-			SliderInteger.TextColor3 = Color3.fromRGB(255, 255, 255)
-			SliderInteger.TextSize = 14.000
-			SliderInteger.TextXAlignment = Enum.TextXAlignment.Right
-
-			local UserInputService = game:GetService("UserInputService")
-			local Dragging = false
-			SliderButton.MouseButton1Down:Connect(function()
-				SliderButton.BackgroundColor3 = Color3.fromRGB(0, 185, 255)
-				Dragging = true
-			end)
-
-			UserInputService.InputChanged:Connect(function()
-				if Dragging then
-					local MousePos = UserInputService:GetMouseLocation()+Vector2.new(0,36)
-					local RelPos = MousePos-Fill.AbsolutePosition
-					local Percent = math.clamp(RelPos.X/Fill.AbsoluteSize.X,0,1)
-					SliderButton.Position = UDim2.new(Percent,0,0.5,0)
-					SliderInteger.Text = math.floor(Percent*Maximum).. "/"..Maximum
-					Callback(math.floor(Percent*Maximum))
-				end
-			end)
-
-			UserInputService.InputEnded:Connect(function(input)
-				if input.UserInputType == Enum.UserInputType.MouseButton1 then
-					Dragging = false
-					SliderButton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
-				end
-			end)
-
 		end
 
 		function _Tabs:CreateLabel(_Text)
