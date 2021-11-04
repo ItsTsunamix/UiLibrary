@@ -654,7 +654,7 @@ function library:Create(Name)
 			SliderName.Position = UDim2.new(0.0170000009, 0, 0.0500000007, 0)
 			SliderName.Size = UDim2.new(0, 197, 0, 20)
 			SliderName.Font = Enum.Font.SourceSans
-			SliderName.Text = "Slider"
+			SliderName.Text = _Name
             SliderName.BorderSizePixel = 0
 			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderName.TextSize = 14.000
