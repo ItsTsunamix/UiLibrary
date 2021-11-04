@@ -655,7 +655,7 @@ function library:Create(Name)
 			SliderName.Size = UDim2.new(0, 197, 0, 20)
 			SliderName.Font = Enum.Font.SourceSans
 			SliderName.Text = _Name
-            		SliderName.BorderSizePixel = 0
+            SliderName.BorderSizePixel = 0
 			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderName.TextSize = 14.000
 			SliderName.TextXAlignment = Enum.TextXAlignment.Left
@@ -663,7 +663,7 @@ function library:Create(Name)
 			Value.Name = "Value"
 			Value.Parent = Slider
 			Value.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
-           		Value.BorderSizePixel = 0
+            Value.BorderSizePixel = 0
 			Value.BackgroundTransparency = 1.000
 			Value.Position = UDim2.new(0.821522415, 0, 0.024390243, 0)
 			Value.Size = UDim2.new(0, 55, 0, 20)
@@ -862,6 +862,7 @@ function library:Create(Name)
 			Expander.Parent = ScrollingFrame_2
 			Expander.BackgroundTransparency = 1
 			Expander.Size = UDim2.new(0, 350, 0, Int)
+            Expander.ZIndex = 0
 		end
 
 		function _Tabs:CreateTextBox(__Text, _Placeholder, ClearOnFocus, Callback)
