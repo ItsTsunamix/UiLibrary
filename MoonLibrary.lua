@@ -861,7 +861,7 @@ function library:Create(Name)
 			Expander.Name = "Expander"
 			Expander.Parent = ScrollingFrame_2
 			Expander.BackgroundTransparency = 1
-			Expander.Size = UDim2.new(0, 350, 0, Int)
+			Expander.Size = UDim2.new(0, 0, 0, Int)
             Expander.ZIndex = 0
 		end
 
