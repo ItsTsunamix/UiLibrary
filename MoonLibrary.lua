@@ -5,8 +5,7 @@ Documentary can be found at: https://github.com/Pandora37/UiLibrary/blob/main/Do
 
 Changelog:
 
-1.) Sliders are back, got a redesign and now use tweenservice for sliding.
-2.) Added a fix for Dropdowns, ExpandBy function, uses 1 parameter, Integer.
+1.) Added a lazy fix to sliders breaking when open macro has been called
 
 ]]
 
@@ -656,6 +655,7 @@ function library:Create(Name)
 			SliderName.Size = UDim2.new(0, 197, 0, 20)
 			SliderName.Font = Enum.Font.SourceSans
 			SliderName.Text = "Slider"
+            SliderName.BorderSizePixel = 0
 			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderName.TextSize = 14.000
 			SliderName.TextXAlignment = Enum.TextXAlignment.Left
@@ -663,11 +663,11 @@ function library:Create(Name)
 			Value.Name = "Value"
 			Value.Parent = Slider
 			Value.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+            Value.BorderSizePixel = 0
 			Value.BackgroundTransparency = 1.000
 			Value.Position = UDim2.new(0.821522415, 0, 0.024390243, 0)
 			Value.Size = UDim2.new(0, 55, 0, 20)
 			Value.Font = Enum.Font.SourceSans
-			Value.Text = "int"
 			Value.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Value.TextSize = 14.000
 			Value.TextXAlignment = Enum.TextXAlignment.Right
